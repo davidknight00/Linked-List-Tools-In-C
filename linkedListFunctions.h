@@ -7,13 +7,14 @@
 #include <stdlib.h>
 
 // data structures
-struct node
+struct LinkedList
 {
-    int dataValue;
-    struct node *nextPtr;
-};
+    int data;
+    struct LinkedList *nextPtr;
+} List;
 
 // function prototypes
+
 /*
 Name: appendNode
 Process: Adds a new node at the end of the linked list
@@ -24,7 +25,7 @@ Device Input/Keyboard: none
 Device Output/Monitor: none
 Dependencies: stdlib
 */
-struct node *appendNode( struct node *headNode, int newValue );
+List *appendNode(List *headNode, int newValue);
 
 /*
 Name: clearLinkedList
@@ -35,10 +36,10 @@ Function Output/Returned: NULL
 Device Input/Keyboard: none
 Device Output/Monitor: none
 */
-struct node *clearLinkedList( struct node *workingPtr );
+List *clearLinkedList(List *workingPtr);
 
 /*
-Name: displayLinkedList
+Name: displayList
 Process: displays all data in the linked list from the head
 Function Input/Parameters: head node ( struct node )
 Function Output/Parameters: none
@@ -48,10 +49,10 @@ Device Output/Monitor: data inside the linked list starting from the head
                             or error message if the linked list is empty
 Dependencies: none
 */
-void displayLinkedList( struct node *headNode );
+void displayList(List *headNode);
 
 /*
-Name: insertNode
+Name: insertAtHead
 Process: inserts a new node at the head of the linked list
 Function Input/Parameters: head node ( struct node ) and the new value ( int )
 Function Output/Parameters: none
@@ -60,10 +61,10 @@ Device Input/Keyboard: none
 Device Output/Monitor: none
 Dependencies: stdlib
 */
-struct node *insertNode( struct node *headNode, int newValue );
+List *insertAtHead(List *headNode, int newValue);
 
 /*
-Name: removeNthNode
+Name: removeAtIndex
 Process: iterates through linked list up to Nth position,removes node; if
                                 position index is beyond the linked list,
                                 takes no action
@@ -74,6 +75,6 @@ Device Input/Keyboard: none
 Device Output/Monitor: none
 Dependencies: free
 */
-struct node *removeNthNode( struct node *headNode, int position );
+List *removeAtIndex(List *headNode, int position);
 
 #endif  // end LINKED_LIST_FUNCTIONS_H
