@@ -28,7 +28,7 @@ Dependencies: stdlib
 List *appendNode(List *headNode, int newValue);
 
 /*
-Name: clearLinkedList
+Name: clearList
 Process: recursively calls the function until all data is freed
 Function Input/Parameters: a working pointer to the head node ( struct node )
 Function Output/Parameters: none
@@ -36,7 +36,7 @@ Function Output/Returned: NULL
 Device Input/Keyboard: none
 Device Output/Monitor: none
 */
-List *clearLinkedList(List *workingPtr);
+List *cleardList(List *wkgPtr);
 
 /*
 Name: displayList
