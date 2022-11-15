@@ -40,91 +40,72 @@ List *clearList(List *wkgPtr)
     return NULL;
 }
 
-void displayLinkedList( struct node *headNode )
+void displayList(List *headNode)
 {
-    // initialize funtion/variables
-    
     // display the linked list data
-        // if the head node is NOT null
     if( headNode != NULL )
     {
-            // while the head node is NOT null
         while( headNode != NULL )
         {
-                // print the current nodes data
-                    // function: printf
             printf( "%d", headNode->dataValue );
-            
-                // if the pointer to the next node is NOT null
+        
             if( headNode->nextPtr != NULL )
             {
-                    // print a comma space
-                        // function: printf
                 printf( ", " );
             }
-
-                // update the current nodes pointer
             headNode = headNode->nextPtr;
         }
+        printf( "\n" );
     }
-
-        // otherwise
     else
     {
-            // print an error message that the linked list is null
-                //function: printf
-        printf( "The linked list is currently empty" );
+        printf( "The linked list is currently empty\n" );
     }
-
-    // print a new line
-        // function: printf
-    printf( "\n" );
 }
 
-struct node *insertNode( struct node *headNode, int newValue )
+List *insertAtHead(List *headNode, int newValue)
 {
-    // initialize function/variables
-        // initialize a new head node
-    struct node *newHeadNode = (struct node*)malloc( sizeof( struct node ) );
-        
-    // add the new value to the new head node
+    List *newHeadNode = (List *)malloc(sizeof(List));
     newHeadNode->dataValue = newValue;
-
-    // point the new head to the original head pointer
     newHeadNode->nextPtr = headNode;
 
-    // return the new head pointer
     return newHeadNode;
 }
 
-struct node *removeNthNode( struct node *headNode, int position )
+List *removeAtIndex(List *headPtr, int position)
 {
-    // initialize function/variables
-        // initialize a temporary and working pointer to the head node
-    struct node *temporaryPtr, workingPtr = headNode;
-
-    // if the head node is NOT null
-        // if the requested removal is the first position
-            // set the temporary pointer to the head node and advance the head
-            // free the temporary pointer
-                // function: free
-        // otherwise
-            /*
-            while the working pointer's next pointer is NOT null and the
-            position is greater than 2
-            */
-                // advance the working pointer
-                // decrease the position
-            /*
-            if the working pointer's next pointer is NOT null and the 
-            position is 2
-            */
-                // set the temporary pointer to the working pointer's next
-                // advance the working pointer ahead by 2
-                // free the temporary pointer
-                    // function: free
-                    
-    // return the updated head node
+    List *wkgPtr = NULL;
+    List *tempPtr = NULL;
+    int index;
+    
+    // remove the head pointer
+    if(headPtr != NULL && position == 0)
+    {
+        tempPtr = headPtr->nextPtr;
+        free(headPtr);
+        return tempPtr;
+    }
+    
+    // check everything from the next pointer onwards
+    tempPtr = headPtr;
+    wkgPtr = headPtr->nextPtr;
+    index = 1;
+    
+    while(wkgPtr != NULL)
+    {
+        if(index == position)
+        {
+            tempPtr->nextPtr = wkgPtr->nextPtr;
+            free(wkgPtr);
+            return headNode;
+        }
+        
+        index+=1;
+        tempPtr = tempPtr->nextPtr;
+        wkgPtr = wkgPtr->nextPtr;
+    }
+    
+    // return the unchanged head node
     return headNode;
 }
 
