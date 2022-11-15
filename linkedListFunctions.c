@@ -2,6 +2,9 @@
 Author: David Knight
 
 These helper functions allow for modification of single-linked lists.
+This helper is meant as a demonstration/practice tool.
+Datatype can be changed accordingly.
+These functions are not guaranteed to work. Use at your own discretion.
 Test Notes: Tested and compiled on Linux-Ubuntu 20.04
 */
 #include "linkedListFunctions.h"
@@ -10,40 +13,17 @@ Test Notes: Tested and compiled on Linux-Ubuntu 20.04
 
 struct node *appendNode( struct node *headNode, int newValue )
 {
-    // initialize function/variables
-        // initialize a new head node and a working pointer
-            // function: malloc
-    struct node *newNode = (struct node*)malloc( sizeof( struct node ) );
-    struct node *workingPtr;
-
-    // append the new node to the head node
-        // set the new nodes data value and set the next pointer to null
-    newNode->dataValue = newValue;
-    newNode->nextPtr = NULL;
-
-        // if the head pointer is empty
-    if( headNode == NULL )
+    // insert node at null node - advance recursively otherwise
+    if(headNode == NULL)
     {
-            // set the head node as the new node
-        headNode = newNode;
+        struct node *newNode = (struct node*)malloc( sizeof( struct node ) );
+        newNode->data = newValue;
     }
-
-        // otherwise
     else
     {
-            // set the working pointer to the head pointer
-        workingPtr = headNode;
-
-            // loop to the end of the linked list
-        while( workingPtr->nextPtr != NULL )
-        {
-                // update the current node to the next node in the list
-            workingPtr = workingPtr->nextPtr;
-        }
-            // point to the new node at the end of the list
-        workingPtr->nextPtr = newNode;
+        headNode->nextPtr = appendNode(headNode->nextPtr, newValue);
     }
-
+    
     // return the updated head node
     return headNode;
 }
