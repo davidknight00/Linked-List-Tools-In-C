@@ -1,6 +1,6 @@
 // preprocessor directive
-#ifndef LINKED_LIST_FUNCTIONS_H
-#define LINKED_LIST_FUNCTIONS_H
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
 
 // header files
 #include <stdio.h>
@@ -77,4 +77,4 @@ Dependencies: free
 */
 List *removeAtIndex(List *headNode, int position);
 
-#endif  // end LINKED_LIST_FUNCTIONS_H
+#endif  // end LINKED_LIST__H
