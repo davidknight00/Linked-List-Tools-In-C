@@ -7,11 +7,11 @@ Datatype can be changed accordingly.
 These functions are not guaranteed to work. Use at your own discretion.
 Test Notes: Tested and compiled on Linux-Ubuntu 20.04
 */
-#include "linkedListFunctions.h"
+#include "linkedList.h"
 
 // function implementations
 
-struct node *appendNode( struct node *headNode, int newValue )
+List *appendNode(List *headNode, int newValue)
 {
     // insert node at null node - advance recursively otherwise
     if(headNode == NULL)
@@ -28,27 +28,15 @@ struct node *appendNode( struct node *headNode, int newValue )
     return headNode;
 }
 
-struct node *clearLinkedList( struct node *workingPtr )
+List *clearList(List *wkgPtr)
 {
-    // initialize function/variables
-    
-    // check if the working pointer is NOT null
-    if( workingPtr != NULL )
+    // recursively clear linked list - return null to head
+    if(wkgPtr != NULL)
     {
-        // check if the working pointers next pointer is NOT null
-        if( workingPtr->nextPtr != NULL )
-        {
-            // recursively call the function with the next pointer
-                // function: clearLinkedList
-            clearLinkedList( workingPtr->nextPtr);
-        }
-
-        // free the current node
-            // function: free
-        free( workingPtr );
+        wkgPtr->nextPtr = clearList(wkgPtr->nextPtr);
+        free(wkgPtr);
     }
-                
-    // return NULL when the linked list is cleared of all data
+    
     return NULL;
 }
 
